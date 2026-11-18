@@ -1,0 +1,682 @@
+{
+ "01-nginx-0.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n20 directives, 1 server block, 0 locations, 1 upstream.\n\nListening on: 80.\n\nIncludes: mime.types, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 18 | \\*:80 | docs.example.test | /var/www/docs | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\nNo findings."
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080 weight=2, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "02-nginx-1.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n27 directives, 2 server blocks, 2 locations, 1 upstream.\n\nListening on: 80, 443.\n\nIncludes: mime.types.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 15 | 443 ssl | admin.example.test | - | yes | 1 |\n| 26 | \\[::\\]:80 | api.example.test | - | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n3 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 15 | hsts | TLS server without a Strict-Transport-Security header |\n| 15 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 26 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080, 10.0.0.11:8080 weight=2 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 29 | /admin/ | http\\:\\/\\/127.0.0.1:3000 | yes | no |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "03-nginx-2.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n29 directives, 3 server blocks, 1 location, 1 upstream.\n\nListening on: 80.\n\nIncludes: mime.types, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n3 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 14 | \\*:80 | api.example.test | /var/www/shop | no | 0 |\n| 21 | 80 | docs.example.test www\\.static.example.test | - | no | 0 |\n| 26 | 80 | admin.example.test | /var/www/shop | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 14 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 26 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 1 | 10.0.0.10:8080 weight=2 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "04-nginx-3.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n52 directives, 4 server blocks, 8 locations, 1 upstream.\n\nListening on: 80, 443.\n\nIncludes: mime.types, snippets/fastcgi-php.conf, snippets/fastcgi-php.conf, proxy\\_params, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n4 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 16 | 443 ssl | admin.example.test | - | yes | 2 |\n| 31 | \\[::\\]:80 | docs.example.test | - | no | 2 |\n| 42 | \\[::\\]:80 | docs.example.test www\\.docs.example.test | - | no | 2 |\n| 54 | 80 default\\_server | static.example.test | - | no | 2 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n8 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 16 | hsts | TLS server without a Strict-Transport-Security header |\n| 16 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 21 | ssl_protocols | outdated protocol TLSv1 is enabled |\n| 21 | ssl_protocols | outdated protocol TLSv1.1 is enabled |\n| 31 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 42 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 47 | autoindex | directory listing is enabled |\n| 54 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 35 | = /health | http\\:\\/\\/backend | yes | not in this file |\n| 49 | /api/ | http\\:\\/\\/unix:/run/app.sock:/ | yes | no |\n| 62 | \\~\\* \\\\.\\(css\\|js\\)\\$ | http\\:\\/\\/unix:/run/app.sock:/ | no | yes |\n\n1 proxied location does not set the Host header."
+  }
+ },
+ "05-nginx-4.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n26 directives, 1 server block, 2 locations, 1 upstream.\n\nListening on: 443.\n\nIncludes: mime.types, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 15 | \\[::\\]:443 ssl | api.example.test | /var/www/shop | yes | 2 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 15 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 22 | add_header | location \\~\\* \\\\.\\(css\\|js\\)\\$ has its own add\\_header, so add\\_header directives from outer levels are not sent for it |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080, 10.0.0.11:8080 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 26 | /api/ | https\\:\\/\\/upstream\\_tls | yes | no |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "06-nginx-5.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n33 directives, 2 server blocks, 4 locations, 1 upstream.\n\nListening on: 80.\n\nIncludes: mime.types, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 15 | 80 default\\_server | api.example.test | /var/www/shop | no | 1 |\n| 24 | 80 | admin.example.test | /var/www/html | no | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n3 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 15 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 24 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 38 | autoindex | directory listing is enabled |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080, 10.0.0.11:8080 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "07-nginx-6.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n48 directives, 3 server blocks, 8 locations, 1 upstream.\n\nListening on: 80, 443, 8443.\n\nIncludes: mime.types, snippets/ssl-params.conf, snippets/fastcgi-php.conf, snippets/fastcgi-php.conf, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n3 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 16 | 10.0.0.1:8443 ssl | api.example.test www\\.admin.example.test | /var/www/html | yes | 0 |\n| 24 | 443 ssl | docs.example.test | /var/www/shop | yes | 3 |\n| 41 | 80 default\\_server | shop.example.test | /var/www/shop | no | 5 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 16 | hsts | TLS server without a Strict-Transport-Security header |\n| 24 | hsts | TLS server without a Strict-Transport-Security header in this file; it includes snippets/ssl-params.conf, which is not checked |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080, 10.0.0.11:8080 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 37 | /ws/ | http\\:\\/\\/unix:/run/app.sock:/ | yes | not in this file |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "08-nginx-7.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n41 directives, 4 server blocks, 1 location, 1 upstream.\n\nListening on: 443, 8080, 8443.\n\nIncludes: mime.types.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n4 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 15 | 443 ssl | static.example.test | /var/www/shop | yes | 0 |\n| 23 | 127.0.0.1:8080 | shop.example.test | /var/www/shop | no | 0 |\n| 28 | 10.0.0.1:8443 ssl | shop.example.test | /var/www/shop | yes | 1 |\n| 39 | 10.0.0.1:8443 ssl | docs.example.test | /var/www/html | yes | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n6 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 15 | hsts | TLS server without a Strict-Transport-Security header |\n| 15 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 23 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 28 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 39 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 46 | ssl_protocols | outdated protocol SSLv3 is enabled |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "09-nginx-8.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n31 directives, 1 server block, 5 locations, 1 upstream.\n\nListening on: 443.\n\nIncludes: mime.types, proxy\\_params, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 14 | 443 ssl | static.example.test | - | yes | 5 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 14 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 1 | 10.0.0.10:8080 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 21 | ^\\~ /images/ | https\\:\\/\\/upstream\\_tls | yes | not in this file |\n| 26 | ^\\~ /images/ | https\\:\\/\\/upstream\\_tls | yes | no |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "10-nginx-9.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n31 directives, 2 server blocks, 3 locations, 1 upstream.\n\nListening on: 80, 443.\n\nIncludes: mime.types, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 15 | 80 | docs.example.test | /var/www/docs | no | 0 |\n| 20 | 443 ssl http2 | api.example.test www\\.admin.example.test | /var/www/docs | yes | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 20 | hsts | TLS server without a Strict-Transport-Security header |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 1 | 10.0.0.10:8080 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 30 | ^\\~ /images/ | http\\:\\/\\/127.0.0.1:3000 | no | yes |\n\n1 proxied location does not set the Host header."
+  }
+ },
+ "11-nginx-10.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n37 directives, 3 server blocks, 3 locations, 1 upstream.\n\nListening on: 80, 443, 8080.\n\nIncludes: mime.types, snippets/fastcgi-php.conf, /etc/nginx/conf.d/\\*.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n3 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 13 | 443 ssl | shop.example.test | /var/www/html | yes | 3 |\n| 35 | 127.0.0.1:8080 | admin.example.test | - | no | 0 |\n| 40 | 80 | admin.example.test | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n3 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 13 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 35 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 40 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 1 | 10.0.0.10:8080 |\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 29 | / | https\\:\\/\\/upstream\\_tls | yes | yes |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "12-nginx-11.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n56 directives, 4 server blocks, 7 locations, 1 upstream.\n\nListening on: 443, 8443.\n\nIncludes: mime.types, snippets/ssl-params.conf, snippets/fastcgi-php.conf, snippets/fastcgi-php.conf, snippets/ssl-params.conf, snippets/ssl-params.conf, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n4 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 16 | \\[::\\]:443 ssl | docs.example.test | - | yes | 3 |\n| 33 | \\[::\\]:443 ssl | admin.example.test | /var/www/shop | yes | 0 |\n| 42 | 443 ssl http2 | api.example.test | /var/www/docs | yes | 0 |\n| 49 | 10.0.0.1:8443 ssl | static.example.test | /var/www/html | yes | 4 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n5 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 16 | hsts | TLS server without a Strict-Transport-Security header in this file; it includes snippets/ssl-params.conf, which is not checked |\n| 42 | hsts | TLS server without a Strict-Transport-Security header |\n| 49 | hsts | TLS server without a Strict-Transport-Security header in this file; it includes snippets/ssl-params.conf, which is not checked |\n| 55 | ssl_protocols | outdated protocol TLSv1 is enabled |\n| 55 | ssl_protocols | outdated protocol TLSv1.1 is enabled |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "13-site-0.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n10 directives, 1 server block, 0 locations, 1 upstream.\n\nListening on: 443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 7 | \\[::\\]:443 ssl | api.example.test | - | yes | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 7 | hsts | TLS server without a Strict-Transport-Security header |\n| 7 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080, 10.0.0.11:8080 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "14-site-1.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n25 directives, 2 server blocks, 6 locations, 0 upstreams.\n\nListening on: 80.\n\nIncludes: proxy\\_params, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | \\*:80 | api.example.test www\\.api.example.test | - | no | 3 |\n| 20 | \\[::\\]:80 | api.example.test www\\.static.example.test | /var/www/shop | no | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |\n| 20 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 5 | = /health | https\\:\\/\\/upstream\\_tls | yes | not in this file |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "15-site-2.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n17 directives, 1 server block, 3 locations, 0 upstreams.\n\nListening on: 8443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 10.0.0.1:8443 ssl | api.example.test | /var/www/docs | yes | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 18 | /api/ | http\\:\\/\\/unix:/run/app.sock:/ | no | no |\n\n1 proxied location does not set the Host header."
+  }
+ },
+ "16-site-3.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n16 directives, 1 server block, 4 locations, 1 upstream.\n\nListening on: 8080.\n\nIncludes: snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 6 | 127.0.0.1:8080 | docs.example.test | - | no | 4 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 6 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 1 | 10.0.0.10:8080 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "17-site-4.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n12 directives, 1 server block, 1 location, 0 upstreams.\n\nListening on: 8443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 10.0.0.1:8443 ssl | admin.example.test | /var/www/html | yes | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 8 | ssl_protocols | outdated protocol SSLv3 is enabled |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "18-site-5.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n23 directives, 2 server blocks, 7 locations, 0 upstreams.\n\nListening on: 80, 8080.\n\nIncludes: snippets/fastcgi-php.conf, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 | static.example.test www\\.docs.example.test | - | no | 3 |\n| 18 | 127.0.0.1:8080 | shop.example.test | - | no | 4 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 18 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 9 | \\~\\* \\\\.\\(css\\|js\\)\\$ | http\\:\\/\\/127.0.0.1:3000 | no | no |\n\n1 proxied location does not set the Host header."
+  }
+ },
+ "19-site-6.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n18 directives, 1 server block, 1 location, 1 upstream.\n\nListening on: 443.\n\nIncludes: snippets/ssl-params.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 7 | 443 ssl http2 | admin.example.test | /var/www/docs | yes | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n3 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 7 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |\n| 14 | ssl_protocols | outdated protocol TLSv1 is enabled |\n| 14 | ssl_protocols | outdated protocol TLSv1.1 is enabled |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 2 | 10.0.0.10:8080 weight=2, 10.0.0.11:8080 weight=2 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "20-site-7.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n4 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | \\*:80 | api.example.test www\\.static.example.test | /var/www/docs | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "21-site-8.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n6 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | \\[::\\]:443 ssl | static.example.test | - | yes | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "22-site-9.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n19 directives, 2 server blocks, 2 locations, 1 upstream.\n\nListening on: 80.\n\nIncludes: snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 8 | 80 default\\_server | docs.example.test www\\.docs.example.test | /var/www/html | no | 0 |\n| 14 | \\[::\\]:80 | static.example.test | /var/www/html | no | 2 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 8 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |\n| 14 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080 weight=2, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "23-site-10.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n13 directives, 1 server block, 3 locations, 0 upstreams.\n\nListening on: 443.\n\nIncludes: snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 443 ssl http2 | static.example.test www\\.docs.example.test | - | yes | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | hsts | TLS server without a Strict-Transport-Security header |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "24-site-11.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n13 directives, 1 server block, 3 locations, 0 upstreams.\n\nListening on: 8080.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 127.0.0.1:8080 | admin.example.test | /var/www/docs | no | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 5 | /api/ | http\\:\\/\\/backend | yes | yes |\n| 13 | = /health | http\\:\\/\\/unix:/run/app.sock:/ | yes | no |\n\n0 proxied locations do not set the Host header."
+  }
+ },
+ "25-empty.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\nThe file contains no directives."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nThe file contains no directives."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\nThe file contains no directives."
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\nThe file contains no directives."
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\nThe file contains no directives."
+  }
+ },
+ "26-only-comments.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\nThe file contains no directives."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nThe file contains no directives."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\nThe file contains no directives."
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\nThe file contains no directives."
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\nThe file contains no directives."
+  }
+ },
+ "27-unbalanced-open.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n5 directives, 1 server block, 1 location, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n3 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\n3 syntax problems.\n\n| Line | Problem |\n| ---: | --- |\n| 1 | missing '\\}' for block 'http' opened on line 1 |\n| 2 | missing '\\}' for block 'server' opened on line 2 |\n| 4 | missing '\\}' for block 'location' opened on line 4 |"
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 2 | 80 | - | - | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 2 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "28-unbalanced-close.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n2 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n2 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\n2 syntax problems.\n\n| Line | Problem |\n| ---: | --- |\n| 4 | unexpected '\\}' |\n| 5 | unexpected '\\}' |"
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 | - | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "29-missing-semicolons.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n3 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n1 syntax problem."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\n1 syntax problem.\n\n| Line | Problem |\n| ---: | --- |\n| 4 | missing ';' after 'return' |"
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 server\\_name a.example.test location / | - | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "30-quotes-and-escapes.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n6 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 | - | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "31-hash-in-word.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n5 directives, 1 server block, 1 location, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 | - | - | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "32-variables-braces.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n6 directives, 1 server block, 1 location, 0 upstreams.\n\nListening on: 80.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | 80 | - | \\$\\{base\\}/html | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "33-crlf.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n22 directives, 2 server blocks, 1 location, 1 upstream.\n\nListening on: 80.\n\nIncludes: mime.types.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n2 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 16 | 80 | admin.example.test | - | no | 1 |\n| 23 | 80 | docs.example.test | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 23 | server_tokens | server\\_tokens is on: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| backend | 3 | 10.0.0.10:8080, 10.0.0.11:8080, 10.0.0.12:8080 backup |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "34-bom.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n8 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | \\[::\\]:443 ssl | api.example.test | /var/www/shop | yes | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\nNo findings."
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "35-tabs.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n12 directives, 1 server block, 3 locations, 0 upstreams.\n\nListening on: 80.\n\nIncludes: snippets/fastcgi-php.conf, snippets/fastcgi-php.conf.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | \\*:80 | static.example.test | /var/www/html | no | 3 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "36-stream-block.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n6 directives, 1 server block, 0 locations, 1 upstream.\n\nListening on: 53.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 5 | 53 udp | - | - | no | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n1 finding.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 5 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\n| Upstream | Servers | Members |\n| --- | ---: | --- |\n| dns | 1 | 10.0.0.53:53 |\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "37-unix-listen.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n5 directives, 1 server block, 0 locations, 0 upstreams.\n\nListening on: 8443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 1 | unix:/run/nginx.sock, 8443 ssl default | \\_ | - | yes | 0 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 1 | hsts | TLS server without a Strict-Transport-Security header |\n| 1 | server_tokens | server\\_tokens is not set to off in this file \\(the nginx default is on\\): unless nginx.conf turns it off, the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ },
+ "38-location-headers.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n10 directives, 1 server block, 2 locations, 0 upstreams.\n\nListening on: 443.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n1 server block.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 3 | 443 ssl | - | - | yes | 2 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n2 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 3 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 6 | add_header | location /a/ has its own add\\_header, so add\\_header directives from outer levels are not sent for it |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 7 | /b/ | http\\:\\/\\/b | no | no |\n\n1 proxied location does not set the Host header."
+  }
+ },
+ "39-many-servers.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n1501 directives, 300 server blocks, 300 locations, 0 upstreams.\n\nListening on: 8000, 8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009, 8010, 8011, 8012, 8013, 8014, 8015, 8016, 8017, 8018, 8019, 8020, 8021, 8022, 8023, 8024, 8025, 8026, 8027, 8028, 8029, 8030, 8031, 8032, 8033, 8034, 8035, 8036, 8037, 8038, 8039, 8040, 8041, 8042, 8043, 8044, 8045, 8046, 8047, 8048, 8049, 8050, 8051, 8052, 8053, 8054, 8055, 8056, 8057, 8058, 8059, 8060, 8061, 8062, 8063, 8064, 8065, 8066, 8067, 8068, 8069, 8070, 8071, 8072, 8073, 8074, 8075, 8076, 8077, 8078, 8079, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090, 8091, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8100, 8101, 8102, 8103, 8104, 8105, 8106, 8107, 8108, 8109, 8110, 8111, 8112, 8113, 8114, 8115, 8116, 8117, 8118, 8119, 8120, 8121, 8122, 8123, 8124, 8125, 8126, 8127, 8128, 8129, 8130, 8131, 8132, 8133, 8134, 8135, 8136, 8137, 8138, 8139, 8140, 8141, 8142, 8143, 8144, 8145, 8146, 8147, 8148, 8149, 8150, 8151, 8152, 8153, 8154, 8155, 8156, 8157, 8158, 8159, 8160, 8161, 8162, 8163, 8164, 8165, 8166, 8167, 8168, 8169, 8170, 8171, 8172, 8173, 8174, 8175, 8176, 8177, 8178, 8179, 8180, 8181, 8182, 8183, 8184, 8185, 8186, 8187, 8188, 8189, 8190, 8191, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200, 8201, 8202, 8203, 8204, 8205, 8206, 8207, 8208, 8209, 8210, 8211, 8212, 8213, 8214, 8215, 8216, 8217, 8218, 8219, 8220, 8221, 8222, 8223, 8224, 8225, 8226, 8227, 8228, 8229, 8230, 8231, 8232, 8233, 8234, 8235, 8236, 8237, 8238, 8239, 8240, 8241, 8242, 8243, 8244, 8245, 8246, 8247, 8248, 8249, 8250, 8251, 8252, 8253, 8254, 8255, 8256, 8257, 8258, 8259, 8260, 8261, 8262, 8263, 8264, 8265, 8266, 8267, 8268, 8269, 8270, 8271, 8272, 8273, 8274, 8275, 8276, 8277, 8278, 8279, 8280, 8281, 8282, 8283, 8284, 8285, 8286, 8287, 8288, 8289, 8290, 8291, 8292, 8293, 8294, 8295, 8296, 8297, 8298, 8299.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n300 server blocks.\n\n| Line | Listen | Server names | Root | TLS | Locations |\n| ---: | --- | --- | --- | --- | ---: |\n| 2 | 8000 | s0.example.test | - | no | 1 |\n| 3 | 8001 | s1.example.test | - | no | 1 |\n| 4 | 8002 | s2.example.test | - | no | 1 |\n| 5 | 8003 | s3.example.test | - | no | 1 |\n| 6 | 8004 | s4.example.test | - | no | 1 |\n| 7 | 8005 | s5.example.test | - | no | 1 |\n| 8 | 8006 | s6.example.test | - | no | 1 |\n| 9 | 8007 | s7.example.test | - | no | 1 |\n| 10 | 8008 | s8.example.test | - | no | 1 |\n| 11 | 8009 | s9.example.test | - | no | 1 |\n| 12 | 8010 | s10.example.test | - | no | 1 |\n| 13 | 8011 | s11.example.test | - | no | 1 |\n| 14 | 8012 | s12.example.test | - | no | 1 |\n| 15 | 8013 | s13.example.test | - | no | 1 |\n| 16 | 8014 | s14.example.test | - | no | 1 |\n| 17 | 8015 | s15.example.test | - | no | 1 |\n| 18 | 8016 | s16.example.test | - | no | 1 |\n| 19 | 8017 | s17.example.test | - | no | 1 |\n| 20 | 8018 | s18.example.test | - | no | 1 |\n| 21 | 8019 | s19.example.test | - | no | 1 |\n| 22 | 8020 | s20.example.test | - | no | 1 |\n| 23 | 8021 | s21.example.test | - | no | 1 |\n| 24 | 8022 | s22.example.test | - | no | 1 |\n| 25 | 8023 | s23.example.test | - | no | 1 |\n| 26 | 8024 | s24.example.test | - | no | 1 |\n| 27 | 8025 | s25.example.test | - | no | 1 |\n| 28 | 8026 | s26.example.test | - | no | 1 |\n| 29 | 8027 | s27.example.test | - | no | 1 |\n| 30 | 8028 | s28.example.test | - | no | 1 |\n| 31 | 8029 | s29.example.test | - | no | 1 |\n| 32 | 8030 | s30.example.test | - | no | 1 |\n| 33 | 8031 | s31.example.test | - | no | 1 |\n| 34 | 8032 | s32.example.test | - | no | 1 |\n| 35 | 8033 | s33.example.test | - | no | 1 |\n| 36 | 8034 | s34.example.test | - | no | 1 |\n| 37 | 8035 | s35.example.test | - | no | 1 |\n| 38 | 8036 | s36.example.test | - | no | 1 |\n| 39 | 8037 | s37.example.test | - | no | 1 |\n| 40 | 8038 | s38.example.test | - | no | 1 |\n| 41 | 8039 | s39.example.test | - | no | 1 |\n| 42 | 8040 | s40.example.test | - | no | 1 |\n| 43 | 8041 | s41.example.test | - | no | 1 |\n| 44 | 8042 | s42.example.test | - | no | 1 |\n| 45 | 8043 | s43.example.test | - | no | 1 |\n| 46 | 8044 | s44.example.test | - | no | 1 |\n| 47 | 8045 | s45.example.test | - | no | 1 |\n| 48 | 8046 | s46.example.test | - | no | 1 |\n| 49 | 8047 | s47.example.test | - | no | 1 |\n| 50 | 8048 | s48.example.test | - | no | 1 |\n| 51 | 8049 | s49.example.test | - | no | 1 |\n| 52 | 8050 | s50.example.test | - | no | 1 |\n| 53 | 8051 | s51.example.test | - | no | 1 |\n| 54 | 8052 | s52.example.test | - | no | 1 |\n| 55 | 8053 | s53.example.test | - | no | 1 |\n| 56 | 8054 | s54.example.test | - | no | 1 |\n| 57 | 8055 | s55.example.test | - | no | 1 |\n| 58 | 8056 | s56.example.test | - | no | 1 |\n| 59 | 8057 | s57.example.test | - | no | 1 |\n| 60 | 8058 | s58.example.test | - | no | 1 |\n| 61 | 8059 | s59.example.test | - | no | 1 |\n| 62 | 8060 | s60.example.test | - | no | 1 |\n| 63 | 8061 | s61.example.test | - | no | 1 |\n| 64 | 8062 | s62.example.test | - | no | 1 |\n| 65 | 8063 | s63.example.test | - | no | 1 |\n| 66 | 8064 | s64.example.test | - | no | 1 |\n| 67 | 8065 | s65.example.test | - | no | 1 |\n| 68 | 8066 | s66.example.test | - | no | 1 |\n| 69 | 8067 | s67.example.test | - | no | 1 |\n| 70 | 8068 | s68.example.test | - | no | 1 |\n| 71 | 8069 | s69.example.test | - | no | 1 |\n| 72 | 8070 | s70.example.test | - | no | 1 |\n| 73 | 8071 | s71.example.test | - | no | 1 |\n| 74 | 8072 | s72.example.test | - | no | 1 |\n| 75 | 8073 | s73.example.test | - | no | 1 |\n| 76 | 8074 | s74.example.test | - | no | 1 |\n| 77 | 8075 | s75.example.test | - | no | 1 |\n| 78 | 8076 | s76.example.test | - | no | 1 |\n| 79 | 8077 | s77.example.test | - | no | 1 |\n| 80 | 8078 | s78.example.test | - | no | 1 |\n| 81 | 8079 | s79.example.test | - | no | 1 |\n| 82 | 8080 | s80.example.test | - | no | 1 |\n| 83 | 8081 | s81.example.test | - | no | 1 |\n| 84 | 8082 | s82.example.test | - | no | 1 |\n| 85 | 8083 | s83.example.test | - | no | 1 |\n| 86 | 8084 | s84.example.test | - | no | 1 |\n| 87 | 8085 | s85.example.test | - | no | 1 |\n| 88 | 8086 | s86.example.test | - | no | 1 |\n| 89 | 8087 | s87.example.test | - | no | 1 |\n| 90 | 8088 | s88.example.test | - | no | 1 |\n| 91 | 8089 | s89.example.test | - | no | 1 |\n| 92 | 8090 | s90.example.test | - | no | 1 |\n| 93 | 8091 | s91.example.test | - | no | 1 |\n| 94 | 8092 | s92.example.test | - | no | 1 |\n| 95 | 8093 | s93.example.test | - | no | 1 |\n| 96 | 8094 | s94.example.test | - | no | 1 |\n| 97 | 8095 | s95.example.test | - | no | 1 |\n| 98 | 8096 | s96.example.test | - | no | 1 |\n| 99 | 8097 | s97.example.test | - | no | 1 |\n| 100 | 8098 | s98.example.test | - | no | 1 |\n| 101 | 8099 | s99.example.test | - | no | 1 |\n| 102 | 8100 | s100.example.test | - | no | 1 |\n| 103 | 8101 | s101.example.test | - | no | 1 |\n| 104 | 8102 | s102.example.test | - | no | 1 |\n| 105 | 8103 | s103.example.test | - | no | 1 |\n| 106 | 8104 | s104.example.test | - | no | 1 |\n| 107 | 8105 | s105.example.test | - | no | 1 |\n| 108 | 8106 | s106.example.test | - | no | 1 |\n| 109 | 8107 | s107.example.test | - | no | 1 |\n| 110 | 8108 | s108.example.test | - | no | 1 |\n| 111 | 8109 | s109.example.test | - | no | 1 |\n| 112 | 8110 | s110.example.test | - | no | 1 |\n| 113 | 8111 | s111.example.test | - | no | 1 |\n| 114 | 8112 | s112.example.test | - | no | 1 |\n| 115 | 8113 | s113.example.test | - | no | 1 |\n| 116 | 8114 | s114.example.test | - | no | 1 |\n| 117 | 8115 | s115.example.test | - | no | 1 |\n| 118 | 8116 | s116.example.test | - | no | 1 |\n| 119 | 8117 | s117.example.test | - | no | 1 |\n| 120 | 8118 | s118.example.test | - | no | 1 |\n| 121 | 8119 | s119.example.test | - | no | 1 |\n| 122 | 8120 | s120.example.test | - | no | 1 |\n| 123 | 8121 | s121.example.test | - | no | 1 |\n| 124 | 8122 | s122.example.test | - | no | 1 |\n| 125 | 8123 | s123.example.test | - | no | 1 |\n| 126 | 8124 | s124.example.test | - | no | 1 |\n| 127 | 8125 | s125.example.test | - | no | 1 |\n| 128 | 8126 | s126.example.test | - | no | 1 |\n| 129 | 8127 | s127.example.test | - | no | 1 |\n| 130 | 8128 | s128.example.test | - | no | 1 |\n| 131 | 8129 | s129.example.test | - | no | 1 |\n| 132 | 8130 | s130.example.test | - | no | 1 |\n| 133 | 8131 | s131.example.test | - | no | 1 |\n| 134 | 8132 | s132.example.test | - | no | 1 |\n| 135 | 8133 | s133.example.test | - | no | 1 |\n| 136 | 8134 | s134.example.test | - | no | 1 |\n| 137 | 8135 | s135.example.test | - | no | 1 |\n| 138 | 8136 | s136.example.test | - | no | 1 |\n| 139 | 8137 | s137.example.test | - | no | 1 |\n| 140 | 8138 | s138.example.test | - | no | 1 |\n| 141 | 8139 | s139.example.test | - | no | 1 |\n| 142 | 8140 | s140.example.test | - | no | 1 |\n| 143 | 8141 | s141.example.test | - | no | 1 |\n| 144 | 8142 | s142.example.test | - | no | 1 |\n| 145 | 8143 | s143.example.test | - | no | 1 |\n| 146 | 8144 | s144.example.test | - | no | 1 |\n| 147 | 8145 | s145.example.test | - | no | 1 |\n| 148 | 8146 | s146.example.test | - | no | 1 |\n| 149 | 8147 | s147.example.test | - | no | 1 |\n| 150 | 8148 | s148.example.test | - | no | 1 |\n| 151 | 8149 | s149.example.test | - | no | 1 |\n| 152 | 8150 | s150.example.test | - | no | 1 |\n| 153 | 8151 | s151.example.test | - | no | 1 |\n| 154 | 8152 | s152.example.test | - | no | 1 |\n| 155 | 8153 | s153.example.test | - | no | 1 |\n| 156 | 8154 | s154.example.test | - | no | 1 |\n| 157 | 8155 | s155.example.test | - | no | 1 |\n| 158 | 8156 | s156.example.test | - | no | 1 |\n| 159 | 8157 | s157.example.test | - | no | 1 |\n| 160 | 8158 | s158.example.test | - | no | 1 |\n| 161 | 8159 | s159.example.test | - | no | 1 |\n| 162 | 8160 | s160.example.test | - | no | 1 |\n| 163 | 8161 | s161.example.test | - | no | 1 |\n| 164 | 8162 | s162.example.test | - | no | 1 |\n| 165 | 8163 | s163.example.test | - | no | 1 |\n| 166 | 8164 | s164.example.test | - | no | 1 |\n| 167 | 8165 | s165.example.test | - | no | 1 |\n| 168 | 8166 | s166.example.test | - | no | 1 |\n| 169 | 8167 | s167.example.test | - | no | 1 |\n| 170 | 8168 | s168.example.test | - | no | 1 |\n| 171 | 8169 | s169.example.test | - | no | 1 |\n| 172 | 8170 | s170.example.test | - | no | 1 |\n| 173 | 8171 | s171.example.test | - | no | 1 |\n| 174 | 8172 | s172.example.test | - | no | 1 |\n| 175 | 8173 | s173.example.test | - | no | 1 |\n| 176 | 8174 | s174.example.test | - | no | 1 |\n| 177 | 8175 | s175.example.test | - | no | 1 |\n| 178 | 8176 | s176.example.test | - | no | 1 |\n| 179 | 8177 | s177.example.test | - | no | 1 |\n| 180 | 8178 | s178.example.test | - | no | 1 |\n| 181 | 8179 | s179.example.test | - | no | 1 |\n| 182 | 8180 | s180.example.test | - | no | 1 |\n| 183 | 8181 | s181.example.test | - | no | 1 |\n| 184 | 8182 | s182.example.test | - | no | 1 |\n| 185 | 8183 | s183.example.test | - | no | 1 |\n| 186 | 8184 | s184.example.test | - | no | 1 |\n| 187 | 8185 | s185.example.test | - | no | 1 |\n| 188 | 8186 | s186.example.test | - | no | 1 |\n| 189 | 8187 | s187.example.test | - | no | 1 |\n| 190 | 8188 | s188.example.test | - | no | 1 |\n| 191 | 8189 | s189.example.test | - | no | 1 |\n| 192 | 8190 | s190.example.test | - | no | 1 |\n| 193 | 8191 | s191.example.test | - | no | 1 |\n| 194 | 8192 | s192.example.test | - | no | 1 |\n| 195 | 8193 | s193.example.test | - | no | 1 |\n| 196 | 8194 | s194.example.test | - | no | 1 |\n| 197 | 8195 | s195.example.test | - | no | 1 |\n| 198 | 8196 | s196.example.test | - | no | 1 |\n| 199 | 8197 | s197.example.test | - | no | 1 |\n| 200 | 8198 | s198.example.test | - | no | 1 |\n| 201 | 8199 | s199.example.test | - | no | 1 |\n| 202 | 8200 | s200.example.test | - | no | 1 |\n| 203 | 8201 | s201.example.test | - | no | 1 |\n| 204 | 8202 | s202.example.test | - | no | 1 |\n| 205 | 8203 | s203.example.test | - | no | 1 |\n| 206 | 8204 | s204.example.test | - | no | 1 |\n| 207 | 8205 | s205.example.test | - | no | 1 |\n| 208 | 8206 | s206.example.test | - | no | 1 |\n| 209 | 8207 | s207.example.test | - | no | 1 |\n| 210 | 8208 | s208.example.test | - | no | 1 |\n| 211 | 8209 | s209.example.test | - | no | 1 |\n| 212 | 8210 | s210.example.test | - | no | 1 |\n| 213 | 8211 | s211.example.test | - | no | 1 |\n| 214 | 8212 | s212.example.test | - | no | 1 |\n| 215 | 8213 | s213.example.test | - | no | 1 |\n| 216 | 8214 | s214.example.test | - | no | 1 |\n| 217 | 8215 | s215.example.test | - | no | 1 |\n| 218 | 8216 | s216.example.test | - | no | 1 |\n| 219 | 8217 | s217.example.test | - | no | 1 |\n| 220 | 8218 | s218.example.test | - | no | 1 |\n| 221 | 8219 | s219.example.test | - | no | 1 |\n| 222 | 8220 | s220.example.test | - | no | 1 |\n| 223 | 8221 | s221.example.test | - | no | 1 |\n| 224 | 8222 | s222.example.test | - | no | 1 |\n| 225 | 8223 | s223.example.test | - | no | 1 |\n| 226 | 8224 | s224.example.test | - | no | 1 |\n| 227 | 8225 | s225.example.test | - | no | 1 |\n| 228 | 8226 | s226.example.test | - | no | 1 |\n| 229 | 8227 | s227.example.test | - | no | 1 |\n| 230 | 8228 | s228.example.test | - | no | 1 |\n| 231 | 8229 | s229.example.test | - | no | 1 |\n| 232 | 8230 | s230.example.test | - | no | 1 |\n| 233 | 8231 | s231.example.test | - | no | 1 |\n| 234 | 8232 | s232.example.test | - | no | 1 |\n| 235 | 8233 | s233.example.test | - | no | 1 |\n| 236 | 8234 | s234.example.test | - | no | 1 |\n| 237 | 8235 | s235.example.test | - | no | 1 |\n| 238 | 8236 | s236.example.test | - | no | 1 |\n| 239 | 8237 | s237.example.test | - | no | 1 |\n| 240 | 8238 | s238.example.test | - | no | 1 |\n| 241 | 8239 | s239.example.test | - | no | 1 |\n| 242 | 8240 | s240.example.test | - | no | 1 |\n| 243 | 8241 | s241.example.test | - | no | 1 |\n| 244 | 8242 | s242.example.test | - | no | 1 |\n| 245 | 8243 | s243.example.test | - | no | 1 |\n| 246 | 8244 | s244.example.test | - | no | 1 |\n| 247 | 8245 | s245.example.test | - | no | 1 |\n| 248 | 8246 | s246.example.test | - | no | 1 |\n| 249 | 8247 | s247.example.test | - | no | 1 |\n| 250 | 8248 | s248.example.test | - | no | 1 |\n| 251 | 8249 | s249.example.test | - | no | 1 |\n| 252 | 8250 | s250.example.test | - | no | 1 |\n| 253 | 8251 | s251.example.test | - | no | 1 |\n| 254 | 8252 | s252.example.test | - | no | 1 |\n| 255 | 8253 | s253.example.test | - | no | 1 |\n| 256 | 8254 | s254.example.test | - | no | 1 |\n| 257 | 8255 | s255.example.test | - | no | 1 |\n| 258 | 8256 | s256.example.test | - | no | 1 |\n| 259 | 8257 | s257.example.test | - | no | 1 |\n| 260 | 8258 | s258.example.test | - | no | 1 |\n| 261 | 8259 | s259.example.test | - | no | 1 |\n| 262 | 8260 | s260.example.test | - | no | 1 |\n| 263 | 8261 | s261.example.test | - | no | 1 |\n| 264 | 8262 | s262.example.test | - | no | 1 |\n| 265 | 8263 | s263.example.test | - | no | 1 |\n| 266 | 8264 | s264.example.test | - | no | 1 |\n| 267 | 8265 | s265.example.test | - | no | 1 |\n| 268 | 8266 | s266.example.test | - | no | 1 |\n| 269 | 8267 | s267.example.test | - | no | 1 |\n| 270 | 8268 | s268.example.test | - | no | 1 |\n| 271 | 8269 | s269.example.test | - | no | 1 |\n| 272 | 8270 | s270.example.test | - | no | 1 |\n| 273 | 8271 | s271.example.test | - | no | 1 |\n| 274 | 8272 | s272.example.test | - | no | 1 |\n| 275 | 8273 | s273.example.test | - | no | 1 |\n| 276 | 8274 | s274.example.test | - | no | 1 |\n| 277 | 8275 | s275.example.test | - | no | 1 |\n| 278 | 8276 | s276.example.test | - | no | 1 |\n| 279 | 8277 | s277.example.test | - | no | 1 |\n| 280 | 8278 | s278.example.test | - | no | 1 |\n| 281 | 8279 | s279.example.test | - | no | 1 |\n| 282 | 8280 | s280.example.test | - | no | 1 |\n| 283 | 8281 | s281.example.test | - | no | 1 |\n| 284 | 8282 | s282.example.test | - | no | 1 |\n| 285 | 8283 | s283.example.test | - | no | 1 |\n| 286 | 8284 | s284.example.test | - | no | 1 |\n| 287 | 8285 | s285.example.test | - | no | 1 |\n| 288 | 8286 | s286.example.test | - | no | 1 |\n| 289 | 8287 | s287.example.test | - | no | 1 |\n| 290 | 8288 | s288.example.test | - | no | 1 |\n| 291 | 8289 | s289.example.test | - | no | 1 |\n| 292 | 8290 | s290.example.test | - | no | 1 |\n| 293 | 8291 | s291.example.test | - | no | 1 |\n| 294 | 8292 | s292.example.test | - | no | 1 |\n| 295 | 8293 | s293.example.test | - | no | 1 |\n| 296 | 8294 | s294.example.test | - | no | 1 |\n| 297 | 8295 | s295.example.test | - | no | 1 |\n| 298 | 8296 | s296.example.test | - | no | 1 |\n| 299 | 8297 | s297.example.test | - | no | 1 |\n| 300 | 8298 | s298.example.test | - | no | 1 |\n| 301 | 8299 | s299.example.test | - | no | 1 |"
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\n300 findings.\n\n| Line | Check | Finding |\n| ---: | --- | --- |\n| 2 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 3 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 4 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 5 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 6 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 7 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 8 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 9 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 10 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 11 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 12 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 13 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 14 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 15 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 16 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 17 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 18 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 19 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 20 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 21 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 22 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 23 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 24 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 25 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 26 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 27 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 28 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 29 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 30 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 31 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 32 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 33 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 34 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 35 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 36 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 37 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 38 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 39 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 40 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 41 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 42 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 43 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 44 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 45 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 46 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 47 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 48 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 49 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 50 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 51 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 52 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 53 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 54 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 55 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 56 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 57 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 58 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 59 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 60 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 61 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 62 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 63 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 64 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 65 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 66 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 67 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 68 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 69 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 70 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 71 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 72 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 73 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 74 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 75 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 76 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 77 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 78 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 79 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 80 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 81 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 82 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 83 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 84 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 85 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 86 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 87 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 88 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 89 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 90 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 91 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 92 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 93 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 94 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 95 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 96 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 97 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 98 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 99 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 100 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 101 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 102 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 103 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 104 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 105 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 106 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 107 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 108 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 109 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 110 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 111 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 112 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 113 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 114 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 115 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 116 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 117 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 118 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 119 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 120 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 121 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 122 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 123 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 124 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 125 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 126 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 127 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 128 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 129 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 130 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 131 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 132 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 133 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 134 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 135 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 136 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 137 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 138 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 139 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 140 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 141 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 142 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 143 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 144 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 145 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 146 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 147 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 148 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 149 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 150 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 151 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 152 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 153 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 154 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 155 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 156 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 157 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 158 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 159 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 160 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 161 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 162 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 163 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 164 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 165 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 166 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 167 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 168 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 169 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 170 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 171 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 172 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 173 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 174 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 175 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 176 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 177 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 178 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 179 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 180 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 181 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 182 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 183 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 184 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 185 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 186 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 187 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 188 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 189 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 190 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 191 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 192 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 193 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 194 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 195 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 196 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 197 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 198 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 199 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 200 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 201 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 202 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 203 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 204 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 205 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 206 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 207 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 208 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 209 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 210 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 211 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 212 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 213 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 214 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 215 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 216 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 217 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 218 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 219 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 220 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 221 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 222 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 223 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 224 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 225 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 226 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 227 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 228 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 229 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 230 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 231 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 232 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 233 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 234 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 235 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 236 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 237 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 238 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 239 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 240 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 241 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 242 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 243 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 244 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 245 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 246 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 247 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 248 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 249 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 250 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 251 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 252 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 253 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 254 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 255 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 256 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 257 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 258 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 259 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 260 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 261 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 262 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 263 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 264 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 265 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 266 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 267 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 268 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 269 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 270 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 271 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 272 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 273 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 274 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 275 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 276 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 277 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 278 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 279 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 280 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 281 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 282 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 283 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 284 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 285 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 286 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 287 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 288 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 289 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 290 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 291 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 292 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 293 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 294 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 295 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 296 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 297 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 298 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 299 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 300 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |\n| 301 | server_tokens | server\\_tokens is not set, so the nginx default \\(on\\) applies: the nginx version is shown in headers and error pages |"
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\n| Line | Location | Target | Host header | X-Forwarded-For |\n| ---: | --- | --- | --- | --- |\n| 2 | / | http\\:\\/\\/127.0.0.1:9000 | no | no |\n| 3 | / | http\\:\\/\\/127.0.0.1:9001 | no | no |\n| 4 | / | http\\:\\/\\/127.0.0.1:9002 | no | no |\n| 5 | / | http\\:\\/\\/127.0.0.1:9003 | no | no |\n| 6 | / | http\\:\\/\\/127.0.0.1:9004 | no | no |\n| 7 | / | http\\:\\/\\/127.0.0.1:9005 | no | no |\n| 8 | / | http\\:\\/\\/127.0.0.1:9006 | no | no |\n| 9 | / | http\\:\\/\\/127.0.0.1:9007 | no | no |\n| 10 | / | http\\:\\/\\/127.0.0.1:9008 | no | no |\n| 11 | / | http\\:\\/\\/127.0.0.1:9009 | no | no |\n| 12 | / | http\\:\\/\\/127.0.0.1:9010 | no | no |\n| 13 | / | http\\:\\/\\/127.0.0.1:9011 | no | no |\n| 14 | / | http\\:\\/\\/127.0.0.1:9012 | no | no |\n| 15 | / | http\\:\\/\\/127.0.0.1:9013 | no | no |\n| 16 | / | http\\:\\/\\/127.0.0.1:9014 | no | no |\n| 17 | / | http\\:\\/\\/127.0.0.1:9015 | no | no |\n| 18 | / | http\\:\\/\\/127.0.0.1:9016 | no | no |\n| 19 | / | http\\:\\/\\/127.0.0.1:9017 | no | no |\n| 20 | / | http\\:\\/\\/127.0.0.1:9018 | no | no |\n| 21 | / | http\\:\\/\\/127.0.0.1:9019 | no | no |\n| 22 | / | http\\:\\/\\/127.0.0.1:9020 | no | no |\n| 23 | / | http\\:\\/\\/127.0.0.1:9021 | no | no |\n| 24 | / | http\\:\\/\\/127.0.0.1:9022 | no | no |\n| 25 | / | http\\:\\/\\/127.0.0.1:9023 | no | no |\n| 26 | / | http\\:\\/\\/127.0.0.1:9024 | no | no |\n| 27 | / | http\\:\\/\\/127.0.0.1:9025 | no | no |\n| 28 | / | http\\:\\/\\/127.0.0.1:9026 | no | no |\n| 29 | / | http\\:\\/\\/127.0.0.1:9027 | no | no |\n| 30 | / | http\\:\\/\\/127.0.0.1:9028 | no | no |\n| 31 | / | http\\:\\/\\/127.0.0.1:9029 | no | no |\n| 32 | / | http\\:\\/\\/127.0.0.1:9030 | no | no |\n| 33 | / | http\\:\\/\\/127.0.0.1:9031 | no | no |\n| 34 | / | http\\:\\/\\/127.0.0.1:9032 | no | no |\n| 35 | / | http\\:\\/\\/127.0.0.1:9033 | no | no |\n| 36 | / | http\\:\\/\\/127.0.0.1:9034 | no | no |\n| 37 | / | http\\:\\/\\/127.0.0.1:9035 | no | no |\n| 38 | / | http\\:\\/\\/127.0.0.1:9036 | no | no |\n| 39 | / | http\\:\\/\\/127.0.0.1:9037 | no | no |\n| 40 | / | http\\:\\/\\/127.0.0.1:9038 | no | no |\n| 41 | / | http\\:\\/\\/127.0.0.1:9039 | no | no |\n| 42 | / | http\\:\\/\\/127.0.0.1:9040 | no | no |\n| 43 | / | http\\:\\/\\/127.0.0.1:9041 | no | no |\n| 44 | / | http\\:\\/\\/127.0.0.1:9042 | no | no |\n| 45 | / | http\\:\\/\\/127.0.0.1:9043 | no | no |\n| 46 | / | http\\:\\/\\/127.0.0.1:9044 | no | no |\n| 47 | / | http\\:\\/\\/127.0.0.1:9045 | no | no |\n| 48 | / | http\\:\\/\\/127.0.0.1:9046 | no | no |\n| 49 | / | http\\:\\/\\/127.0.0.1:9047 | no | no |\n| 50 | / | http\\:\\/\\/127.0.0.1:9048 | no | no |\n| 51 | / | http\\:\\/\\/127.0.0.1:9049 | no | no |\n| 52 | / | http\\:\\/\\/127.0.0.1:9050 | no | no |\n| 53 | / | http\\:\\/\\/127.0.0.1:9051 | no | no |\n| 54 | / | http\\:\\/\\/127.0.0.1:9052 | no | no |\n| 55 | / | http\\:\\/\\/127.0.0.1:9053 | no | no |\n| 56 | / | http\\:\\/\\/127.0.0.1:9054 | no | no |\n| 57 | / | http\\:\\/\\/127.0.0.1:9055 | no | no |\n| 58 | / | http\\:\\/\\/127.0.0.1:9056 | no | no |\n| 59 | / | http\\:\\/\\/127.0.0.1:9057 | no | no |\n| 60 | / | http\\:\\/\\/127.0.0.1:9058 | no | no |\n| 61 | / | http\\:\\/\\/127.0.0.1:9059 | no | no |\n| 62 | / | http\\:\\/\\/127.0.0.1:9060 | no | no |\n| 63 | / | http\\:\\/\\/127.0.0.1:9061 | no | no |\n| 64 | / | http\\:\\/\\/127.0.0.1:9062 | no | no |\n| 65 | / | http\\:\\/\\/127.0.0.1:9063 | no | no |\n| 66 | / | http\\:\\/\\/127.0.0.1:9064 | no | no |\n| 67 | / | http\\:\\/\\/127.0.0.1:9065 | no | no |\n| 68 | / | http\\:\\/\\/127.0.0.1:9066 | no | no |\n| 69 | / | http\\:\\/\\/127.0.0.1:9067 | no | no |\n| 70 | / | http\\:\\/\\/127.0.0.1:9068 | no | no |\n| 71 | / | http\\:\\/\\/127.0.0.1:9069 | no | no |\n| 72 | / | http\\:\\/\\/127.0.0.1:9070 | no | no |\n| 73 | / | http\\:\\/\\/127.0.0.1:9071 | no | no |\n| 74 | / | http\\:\\/\\/127.0.0.1:9072 | no | no |\n| 75 | / | http\\:\\/\\/127.0.0.1:9073 | no | no |\n| 76 | / | http\\:\\/\\/127.0.0.1:9074 | no | no |\n| 77 | / | http\\:\\/\\/127.0.0.1:9075 | no | no |\n| 78 | / | http\\:\\/\\/127.0.0.1:9076 | no | no |\n| 79 | / | http\\:\\/\\/127.0.0.1:9077 | no | no |\n| 80 | / | http\\:\\/\\/127.0.0.1:9078 | no | no |\n| 81 | / | http\\:\\/\\/127.0.0.1:9079 | no | no |\n| 82 | / | http\\:\\/\\/127.0.0.1:9080 | no | no |\n| 83 | / | http\\:\\/\\/127.0.0.1:9081 | no | no |\n| 84 | / | http\\:\\/\\/127.0.0.1:9082 | no | no |\n| 85 | / | http\\:\\/\\/127.0.0.1:9083 | no | no |\n| 86 | / | http\\:\\/\\/127.0.0.1:9084 | no | no |\n| 87 | / | http\\:\\/\\/127.0.0.1:9085 | no | no |\n| 88 | / | http\\:\\/\\/127.0.0.1:9086 | no | no |\n| 89 | / | http\\:\\/\\/127.0.0.1:9087 | no | no |\n| 90 | / | http\\:\\/\\/127.0.0.1:9088 | no | no |\n| 91 | / | http\\:\\/\\/127.0.0.1:9089 | no | no |\n| 92 | / | http\\:\\/\\/127.0.0.1:9090 | no | no |\n| 93 | / | http\\:\\/\\/127.0.0.1:9091 | no | no |\n| 94 | / | http\\:\\/\\/127.0.0.1:9092 | no | no |\n| 95 | / | http\\:\\/\\/127.0.0.1:9093 | no | no |\n| 96 | / | http\\:\\/\\/127.0.0.1:9094 | no | no |\n| 97 | / | http\\:\\/\\/127.0.0.1:9095 | no | no |\n| 98 | / | http\\:\\/\\/127.0.0.1:9096 | no | no |\n| 99 | / | http\\:\\/\\/127.0.0.1:9097 | no | no |\n| 100 | / | http\\:\\/\\/127.0.0.1:9098 | no | no |\n| 101 | / | http\\:\\/\\/127.0.0.1:9099 | no | no |\n| 102 | / | http\\:\\/\\/127.0.0.1:9100 | no | no |\n| 103 | / | http\\:\\/\\/127.0.0.1:9101 | no | no |\n| 104 | / | http\\:\\/\\/127.0.0.1:9102 | no | no |\n| 105 | / | http\\:\\/\\/127.0.0.1:9103 | no | no |\n| 106 | / | http\\:\\/\\/127.0.0.1:9104 | no | no |\n| 107 | / | http\\:\\/\\/127.0.0.1:9105 | no | no |\n| 108 | / | http\\:\\/\\/127.0.0.1:9106 | no | no |\n| 109 | / | http\\:\\/\\/127.0.0.1:9107 | no | no |\n| 110 | / | http\\:\\/\\/127.0.0.1:9108 | no | no |\n| 111 | / | http\\:\\/\\/127.0.0.1:9109 | no | no |\n| 112 | / | http\\:\\/\\/127.0.0.1:9110 | no | no |\n| 113 | / | http\\:\\/\\/127.0.0.1:9111 | no | no |\n| 114 | / | http\\:\\/\\/127.0.0.1:9112 | no | no |\n| 115 | / | http\\:\\/\\/127.0.0.1:9113 | no | no |\n| 116 | / | http\\:\\/\\/127.0.0.1:9114 | no | no |\n| 117 | / | http\\:\\/\\/127.0.0.1:9115 | no | no |\n| 118 | / | http\\:\\/\\/127.0.0.1:9116 | no | no |\n| 119 | / | http\\:\\/\\/127.0.0.1:9117 | no | no |\n| 120 | / | http\\:\\/\\/127.0.0.1:9118 | no | no |\n| 121 | / | http\\:\\/\\/127.0.0.1:9119 | no | no |\n| 122 | / | http\\:\\/\\/127.0.0.1:9120 | no | no |\n| 123 | / | http\\:\\/\\/127.0.0.1:9121 | no | no |\n| 124 | / | http\\:\\/\\/127.0.0.1:9122 | no | no |\n| 125 | / | http\\:\\/\\/127.0.0.1:9123 | no | no |\n| 126 | / | http\\:\\/\\/127.0.0.1:9124 | no | no |\n| 127 | / | http\\:\\/\\/127.0.0.1:9125 | no | no |\n| 128 | / | http\\:\\/\\/127.0.0.1:9126 | no | no |\n| 129 | / | http\\:\\/\\/127.0.0.1:9127 | no | no |\n| 130 | / | http\\:\\/\\/127.0.0.1:9128 | no | no |\n| 131 | / | http\\:\\/\\/127.0.0.1:9129 | no | no |\n| 132 | / | http\\:\\/\\/127.0.0.1:9130 | no | no |\n| 133 | / | http\\:\\/\\/127.0.0.1:9131 | no | no |\n| 134 | / | http\\:\\/\\/127.0.0.1:9132 | no | no |\n| 135 | / | http\\:\\/\\/127.0.0.1:9133 | no | no |\n| 136 | / | http\\:\\/\\/127.0.0.1:9134 | no | no |\n| 137 | / | http\\:\\/\\/127.0.0.1:9135 | no | no |\n| 138 | / | http\\:\\/\\/127.0.0.1:9136 | no | no |\n| 139 | / | http\\:\\/\\/127.0.0.1:9137 | no | no |\n| 140 | / | http\\:\\/\\/127.0.0.1:9138 | no | no |\n| 141 | / | http\\:\\/\\/127.0.0.1:9139 | no | no |\n| 142 | / | http\\:\\/\\/127.0.0.1:9140 | no | no |\n| 143 | / | http\\:\\/\\/127.0.0.1:9141 | no | no |\n| 144 | / | http\\:\\/\\/127.0.0.1:9142 | no | no |\n| 145 | / | http\\:\\/\\/127.0.0.1:9143 | no | no |\n| 146 | / | http\\:\\/\\/127.0.0.1:9144 | no | no |\n| 147 | / | http\\:\\/\\/127.0.0.1:9145 | no | no |\n| 148 | / | http\\:\\/\\/127.0.0.1:9146 | no | no |\n| 149 | / | http\\:\\/\\/127.0.0.1:9147 | no | no |\n| 150 | / | http\\:\\/\\/127.0.0.1:9148 | no | no |\n| 151 | / | http\\:\\/\\/127.0.0.1:9149 | no | no |\n| 152 | / | http\\:\\/\\/127.0.0.1:9150 | no | no |\n| 153 | / | http\\:\\/\\/127.0.0.1:9151 | no | no |\n| 154 | / | http\\:\\/\\/127.0.0.1:9152 | no | no |\n| 155 | / | http\\:\\/\\/127.0.0.1:9153 | no | no |\n| 156 | / | http\\:\\/\\/127.0.0.1:9154 | no | no |\n| 157 | / | http\\:\\/\\/127.0.0.1:9155 | no | no |\n| 158 | / | http\\:\\/\\/127.0.0.1:9156 | no | no |\n| 159 | / | http\\:\\/\\/127.0.0.1:9157 | no | no |\n| 160 | / | http\\:\\/\\/127.0.0.1:9158 | no | no |\n| 161 | / | http\\:\\/\\/127.0.0.1:9159 | no | no |\n| 162 | / | http\\:\\/\\/127.0.0.1:9160 | no | no |\n| 163 | / | http\\:\\/\\/127.0.0.1:9161 | no | no |\n| 164 | / | http\\:\\/\\/127.0.0.1:9162 | no | no |\n| 165 | / | http\\:\\/\\/127.0.0.1:9163 | no | no |\n| 166 | / | http\\:\\/\\/127.0.0.1:9164 | no | no |\n| 167 | / | http\\:\\/\\/127.0.0.1:9165 | no | no |\n| 168 | / | http\\:\\/\\/127.0.0.1:9166 | no | no |\n| 169 | / | http\\:\\/\\/127.0.0.1:9167 | no | no |\n| 170 | / | http\\:\\/\\/127.0.0.1:9168 | no | no |\n| 171 | / | http\\:\\/\\/127.0.0.1:9169 | no | no |\n| 172 | / | http\\:\\/\\/127.0.0.1:9170 | no | no |\n| 173 | / | http\\:\\/\\/127.0.0.1:9171 | no | no |\n| 174 | / | http\\:\\/\\/127.0.0.1:9172 | no | no |\n| 175 | / | http\\:\\/\\/127.0.0.1:9173 | no | no |\n| 176 | / | http\\:\\/\\/127.0.0.1:9174 | no | no |\n| 177 | / | http\\:\\/\\/127.0.0.1:9175 | no | no |\n| 178 | / | http\\:\\/\\/127.0.0.1:9176 | no | no |\n| 179 | / | http\\:\\/\\/127.0.0.1:9177 | no | no |\n| 180 | / | http\\:\\/\\/127.0.0.1:9178 | no | no |\n| 181 | / | http\\:\\/\\/127.0.0.1:9179 | no | no |\n| 182 | / | http\\:\\/\\/127.0.0.1:9180 | no | no |\n| 183 | / | http\\:\\/\\/127.0.0.1:9181 | no | no |\n| 184 | / | http\\:\\/\\/127.0.0.1:9182 | no | no |\n| 185 | / | http\\:\\/\\/127.0.0.1:9183 | no | no |\n| 186 | / | http\\:\\/\\/127.0.0.1:9184 | no | no |\n| 187 | / | http\\:\\/\\/127.0.0.1:9185 | no | no |\n| 188 | / | http\\:\\/\\/127.0.0.1:9186 | no | no |\n| 189 | / | http\\:\\/\\/127.0.0.1:9187 | no | no |\n| 190 | / | http\\:\\/\\/127.0.0.1:9188 | no | no |\n| 191 | / | http\\:\\/\\/127.0.0.1:9189 | no | no |\n| 192 | / | http\\:\\/\\/127.0.0.1:9190 | no | no |\n| 193 | / | http\\:\\/\\/127.0.0.1:9191 | no | no |\n| 194 | / | http\\:\\/\\/127.0.0.1:9192 | no | no |\n| 195 | / | http\\:\\/\\/127.0.0.1:9193 | no | no |\n| 196 | / | http\\:\\/\\/127.0.0.1:9194 | no | no |\n| 197 | / | http\\:\\/\\/127.0.0.1:9195 | no | no |\n| 198 | / | http\\:\\/\\/127.0.0.1:9196 | no | no |\n| 199 | / | http\\:\\/\\/127.0.0.1:9197 | no | no |\n| 200 | / | http\\:\\/\\/127.0.0.1:9198 | no | no |\n| 201 | / | http\\:\\/\\/127.0.0.1:9199 | no | no |\n| 202 | / | http\\:\\/\\/127.0.0.1:9200 | no | no |\n| 203 | / | http\\:\\/\\/127.0.0.1:9201 | no | no |\n| 204 | / | http\\:\\/\\/127.0.0.1:9202 | no | no |\n| 205 | / | http\\:\\/\\/127.0.0.1:9203 | no | no |\n| 206 | / | http\\:\\/\\/127.0.0.1:9204 | no | no |\n| 207 | / | http\\:\\/\\/127.0.0.1:9205 | no | no |\n| 208 | / | http\\:\\/\\/127.0.0.1:9206 | no | no |\n| 209 | / | http\\:\\/\\/127.0.0.1:9207 | no | no |\n| 210 | / | http\\:\\/\\/127.0.0.1:9208 | no | no |\n| 211 | / | http\\:\\/\\/127.0.0.1:9209 | no | no |\n| 212 | / | http\\:\\/\\/127.0.0.1:9210 | no | no |\n| 213 | / | http\\:\\/\\/127.0.0.1:9211 | no | no |\n| 214 | / | http\\:\\/\\/127.0.0.1:9212 | no | no |\n| 215 | / | http\\:\\/\\/127.0.0.1:9213 | no | no |\n| 216 | / | http\\:\\/\\/127.0.0.1:9214 | no | no |\n| 217 | / | http\\:\\/\\/127.0.0.1:9215 | no | no |\n| 218 | / | http\\:\\/\\/127.0.0.1:9216 | no | no |\n| 219 | / | http\\:\\/\\/127.0.0.1:9217 | no | no |\n| 220 | / | http\\:\\/\\/127.0.0.1:9218 | no | no |\n| 221 | / | http\\:\\/\\/127.0.0.1:9219 | no | no |\n| 222 | / | http\\:\\/\\/127.0.0.1:9220 | no | no |\n| 223 | / | http\\:\\/\\/127.0.0.1:9221 | no | no |\n| 224 | / | http\\:\\/\\/127.0.0.1:9222 | no | no |\n| 225 | / | http\\:\\/\\/127.0.0.1:9223 | no | no |\n| 226 | / | http\\:\\/\\/127.0.0.1:9224 | no | no |\n| 227 | / | http\\:\\/\\/127.0.0.1:9225 | no | no |\n| 228 | / | http\\:\\/\\/127.0.0.1:9226 | no | no |\n| 229 | / | http\\:\\/\\/127.0.0.1:9227 | no | no |\n| 230 | / | http\\:\\/\\/127.0.0.1:9228 | no | no |\n| 231 | / | http\\:\\/\\/127.0.0.1:9229 | no | no |\n| 232 | / | http\\:\\/\\/127.0.0.1:9230 | no | no |\n| 233 | / | http\\:\\/\\/127.0.0.1:9231 | no | no |\n| 234 | / | http\\:\\/\\/127.0.0.1:9232 | no | no |\n| 235 | / | http\\:\\/\\/127.0.0.1:9233 | no | no |\n| 236 | / | http\\:\\/\\/127.0.0.1:9234 | no | no |\n| 237 | / | http\\:\\/\\/127.0.0.1:9235 | no | no |\n| 238 | / | http\\:\\/\\/127.0.0.1:9236 | no | no |\n| 239 | / | http\\:\\/\\/127.0.0.1:9237 | no | no |\n| 240 | / | http\\:\\/\\/127.0.0.1:9238 | no | no |\n| 241 | / | http\\:\\/\\/127.0.0.1:9239 | no | no |\n| 242 | / | http\\:\\/\\/127.0.0.1:9240 | no | no |\n| 243 | / | http\\:\\/\\/127.0.0.1:9241 | no | no |\n| 244 | / | http\\:\\/\\/127.0.0.1:9242 | no | no |\n| 245 | / | http\\:\\/\\/127.0.0.1:9243 | no | no |\n| 246 | / | http\\:\\/\\/127.0.0.1:9244 | no | no |\n| 247 | / | http\\:\\/\\/127.0.0.1:9245 | no | no |\n| 248 | / | http\\:\\/\\/127.0.0.1:9246 | no | no |\n| 249 | / | http\\:\\/\\/127.0.0.1:9247 | no | no |\n| 250 | / | http\\:\\/\\/127.0.0.1:9248 | no | no |\n| 251 | / | http\\:\\/\\/127.0.0.1:9249 | no | no |\n| 252 | / | http\\:\\/\\/127.0.0.1:9250 | no | no |\n| 253 | / | http\\:\\/\\/127.0.0.1:9251 | no | no |\n| 254 | / | http\\:\\/\\/127.0.0.1:9252 | no | no |\n| 255 | / | http\\:\\/\\/127.0.0.1:9253 | no | no |\n| 256 | / | http\\:\\/\\/127.0.0.1:9254 | no | no |\n| 257 | / | http\\:\\/\\/127.0.0.1:9255 | no | no |\n| 258 | / | http\\:\\/\\/127.0.0.1:9256 | no | no |\n| 259 | / | http\\:\\/\\/127.0.0.1:9257 | no | no |\n| 260 | / | http\\:\\/\\/127.0.0.1:9258 | no | no |\n| 261 | / | http\\:\\/\\/127.0.0.1:9259 | no | no |\n| 262 | / | http\\:\\/\\/127.0.0.1:9260 | no | no |\n| 263 | / | http\\:\\/\\/127.0.0.1:9261 | no | no |\n| 264 | / | http\\:\\/\\/127.0.0.1:9262 | no | no |\n| 265 | / | http\\:\\/\\/127.0.0.1:9263 | no | no |\n| 266 | / | http\\:\\/\\/127.0.0.1:9264 | no | no |\n| 267 | / | http\\:\\/\\/127.0.0.1:9265 | no | no |\n| 268 | / | http\\:\\/\\/127.0.0.1:9266 | no | no |\n| 269 | / | http\\:\\/\\/127.0.0.1:9267 | no | no |\n| 270 | / | http\\:\\/\\/127.0.0.1:9268 | no | no |\n| 271 | / | http\\:\\/\\/127.0.0.1:9269 | no | no |\n| 272 | / | http\\:\\/\\/127.0.0.1:9270 | no | no |\n| 273 | / | http\\:\\/\\/127.0.0.1:9271 | no | no |\n| 274 | / | http\\:\\/\\/127.0.0.1:9272 | no | no |\n| 275 | / | http\\:\\/\\/127.0.0.1:9273 | no | no |\n| 276 | / | http\\:\\/\\/127.0.0.1:9274 | no | no |\n| 277 | / | http\\:\\/\\/127.0.0.1:9275 | no | no |\n| 278 | / | http\\:\\/\\/127.0.0.1:9276 | no | no |\n| 279 | / | http\\:\\/\\/127.0.0.1:9277 | no | no |\n| 280 | / | http\\:\\/\\/127.0.0.1:9278 | no | no |\n| 281 | / | http\\:\\/\\/127.0.0.1:9279 | no | no |\n| 282 | / | http\\:\\/\\/127.0.0.1:9280 | no | no |\n| 283 | / | http\\:\\/\\/127.0.0.1:9281 | no | no |\n| 284 | / | http\\:\\/\\/127.0.0.1:9282 | no | no |\n| 285 | / | http\\:\\/\\/127.0.0.1:9283 | no | no |\n| 286 | / | http\\:\\/\\/127.0.0.1:9284 | no | no |\n| 287 | / | http\\:\\/\\/127.0.0.1:9285 | no | no |\n| 288 | / | http\\:\\/\\/127.0.0.1:9286 | no | no |\n| 289 | / | http\\:\\/\\/127.0.0.1:9287 | no | no |\n| 290 | / | http\\:\\/\\/127.0.0.1:9288 | no | no |\n| 291 | / | http\\:\\/\\/127.0.0.1:9289 | no | no |\n| 292 | / | http\\:\\/\\/127.0.0.1:9290 | no | no |\n| 293 | / | http\\:\\/\\/127.0.0.1:9291 | no | no |\n| 294 | / | http\\:\\/\\/127.0.0.1:9292 | no | no |\n| 295 | / | http\\:\\/\\/127.0.0.1:9293 | no | no |\n| 296 | / | http\\:\\/\\/127.0.0.1:9294 | no | no |\n| 297 | / | http\\:\\/\\/127.0.0.1:9295 | no | no |\n| 298 | / | http\\:\\/\\/127.0.0.1:9296 | no | no |\n| 299 | / | http\\:\\/\\/127.0.0.1:9297 | no | no |\n| 300 | / | http\\:\\/\\/127.0.0.1:9298 | no | no |\n| 301 | / | http\\:\\/\\/127.0.0.1:9299 | no | no |\n\n300 proxied locations do not set the Host header."
+  }
+ },
+ "40-deep.conf": {
+  "reportSummary": {
+   "exact": "# Nginx Config Summary\n\n62 directives, 0 server blocks, 60 locations, 0 upstreams.\n\nListening on: none.\n\nNo include directives.\n\n0 syntax problems."
+  },
+  "reportSyntax": {
+   "exact": "# Syntax Check\n\nNo syntax problems found."
+  },
+  "reportServers": {
+   "exact": "# Server Blocks\n\n0 server blocks."
+  },
+  "reportSecurity": {
+   "exact": "# Security Review\n\nNo findings."
+  },
+  "reportProxy": {
+   "exact": "# Proxy and Upstreams\n\n## Upstreams\n\nNo upstream blocks.\n\n## Proxied locations\n\nNo proxied locations."
+  }
+ }
+}
